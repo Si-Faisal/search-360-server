@@ -122,7 +122,7 @@ async function run() {
       next();
     }
 
-        app.get('/classes', async (req, res) => {
+        app.get('/classes',  async (req, res) => {
             const result = await classesCollection.find().toArray();
              return res.send(result);
         })
@@ -135,7 +135,7 @@ async function run() {
 
         //after make payment...seat are reduce from available seat...
 
-        app.patch("/classes/:id", async (req, res) => {
+        app.patch("/classes/:id", verifyJWT, async (req, res) => {
             const id = req.params.id;
             const updateSeat = req.body;
             const filter = { _id: new ObjectId(id) };
@@ -150,7 +150,7 @@ async function run() {
             return res.send(result)
         })
         
-        app.patch('/classes/admin/:id', async (req, res) => {
+        app.patch('/classes/admin/:id', verifyJWT, async (req, res) => {
             const id = req.params.id;
             const info = req.body;
             console.log(info.status);
@@ -167,11 +167,11 @@ async function run() {
 
         })
 
-        // app.get("/class/select", async (req, res) => {
+        app.get("/class/select", async (req, res) => {
             
-        //     const result = await selectClassCollection.find().toArray();
-        //     return res.send(result);
-        // })
+            const result = await selectClassCollection.find().toArray();
+            return res.send(result);
+        })
 
         app.get("/class/select/:id", async (req, res) => {
             const id = req.params.id;
@@ -195,7 +195,7 @@ async function run() {
         })
         
 
-        app.get("/class/enroll", async (req, res) => {
+        app.get("/class/enroll",  async (req, res) => {
             const result = await enrollClassCollection.find().toArray();
             return res.send(result)
         })
@@ -211,13 +211,13 @@ async function run() {
 
 
         // //user info insert to db...
-        app.get("/users", async (req, res) => {
+        app.get("/users",  async (req, res) => {
            
             const result = await userCollection.find().toArray();
             return res.send(result);
         })
 
-        app.get('/users/admin/:email', async (req, res) => {
+        app.get('/users/admin/:email',  async (req, res) => {
             const email = req.params.email;
 
             // if (req.decoded.email !== email) {
@@ -233,7 +233,7 @@ async function run() {
             return res.send(result);
         })
 
-        app.get('/users/instractor/:email', async (req, res) => {
+        app.get('/users/instractor/:email',  async (req, res) => {
             const email = req.params.email;
 
             // if (req.decoded.email !== email) {
@@ -265,7 +265,7 @@ async function run() {
             return res.send(result);
         })
 
-        app.get('/users/admin/:email', async (req, res) => {
+        app.get('/users/admin/:email', verifyJWT, async (req, res) => {
             const email = req.params.email;
 
             if (req.decoded.email !== email) {
@@ -278,7 +278,7 @@ async function run() {
             return res.send(result);
         })
 
-        app.patch('/users/admin/:id', async (req, res) => {
+        app.patch('/users/admin/:id', verifyJWT, async (req, res) => {
             const id = req.params.id;
             const info = req.body;
             console.log(info);
