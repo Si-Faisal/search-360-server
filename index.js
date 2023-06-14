@@ -150,28 +150,28 @@ async function run() {
             return res.send(result)
         })
         
-        // app.patch('/classes/admin/:id', async (req, res) => {
-        //     const id = req.params.id;
-        //     const info = req.body;
-        //     console.log(info.status);
-        //     const filter = { _id: new ObjectId(id) };
-        //     const options = { upsert: true };
-        //     const updateDoc = {
-        //         $set: {
-        //             status: info.status
-        //         },
-        //     };
+        app.patch('/classes/admin/:id', async (req, res) => {
+            const id = req.params.id;
+            const info = req.body;
+            console.log(info.status);
+            const filter = { _id: new ObjectId(id) };
+            const options = { upsert: true };
+            const updateDoc = {
+                $set: {
+                    status: info.status
+                },
+            };
 
-        //     const result = await classesCollection.updateOne(filter, updateDoc, options);
-        //     return  res.send(result);
+            const result = await classesCollection.updateOne(filter, updateDoc, options);
+            return  res.send(result);
 
-        // })
-
-        app.get("/class/select", async (req, res) => {
-            
-            const result = await selectClassCollection.find().toArray();
-            return res.send(result);
         })
+
+        // app.get("/class/select", async (req, res) => {
+            
+        //     const result = await selectClassCollection.find().toArray();
+        //     return res.send(result);
+        // })
 
         app.get("/class/select/:id", async (req, res) => {
             const id = req.params.id;
