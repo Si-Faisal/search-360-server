@@ -135,37 +135,37 @@ async function run() {
 
         //after make payment...seat are reduce from available seat...
 
-        // app.patch("/classes/:id", async (req, res) => {
-        //     const id = req.params.id;
-        //     const updateSeat = req.body;
-        //     const filter = { _id: new ObjectId(id) };
-        //     const options = { upsert: true };
-        //     const updateDoc = {
-        //         $set: {
-
-        //             seat: updateSeat.restSeat
-        //         }
-        //     }
-        //     const result = await classesCollection.updateOne(filter, updateDoc, options)
-        //     return res.send(result)
-        // })
-        
-        app.patch('/classes/admin/:id', async (req, res) => {
+        app.patch("/classes/:id", async (req, res) => {
             const id = req.params.id;
-            const info = req.body;
-            console.log(info.status);
+            const updateSeat = req.body;
             const filter = { _id: new ObjectId(id) };
             const options = { upsert: true };
             const updateDoc = {
                 $set: {
-                    status: info.status
-                },
-            };
 
-            const result = await classesCollection.updateOne(filter, updateDoc, options);
-            return  res.send(result);
-
+                    seat: updateSeat.restSeat
+                }
+            }
+            const result = await classesCollection.updateOne(filter, updateDoc, options)
+            return res.send(result)
         })
+        
+        // app.patch('/classes/admin/:id', async (req, res) => {
+        //     const id = req.params.id;
+        //     const info = req.body;
+        //     console.log(info.status);
+        //     const filter = { _id: new ObjectId(id) };
+        //     const options = { upsert: true };
+        //     const updateDoc = {
+        //         $set: {
+        //             status: info.status
+        //         },
+        //     };
+
+        //     const result = await classesCollection.updateOne(filter, updateDoc, options);
+        //     return  res.send(result);
+
+        // })
 
         app.get("/class/select", async (req, res) => {
             
