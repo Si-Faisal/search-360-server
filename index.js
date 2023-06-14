@@ -127,28 +127,28 @@ async function run() {
              return res.send(result);
         })
 
-        // app.post("/classes", async (req, res) => {
-        //     const newclass = req.body;
-        //     const result = await classesCollection.insertOne(newclass);
-        //     return res.send(result);
-        // })
+        app.post("/classes", async (req, res) => {
+            const newclass = req.body;
+            const result = await classesCollection.insertOne(newclass);
+            return res.send(result);
+        })
 
         //after make payment...seat are reduce from available seat...
 
-        app.patch("/classes/:id", async (req, res) => {
-            const id = req.params.id;
-            const updateSeat = req.body;
-            const filter = { _id: new ObjectId(id) };
-            const options = { upsert: true };
-            const updateDoc = {
-                $set: {
+        // app.patch("/classes/:id", async (req, res) => {
+        //     const id = req.params.id;
+        //     const updateSeat = req.body;
+        //     const filter = { _id: new ObjectId(id) };
+        //     const options = { upsert: true };
+        //     const updateDoc = {
+        //         $set: {
 
-                    seat: updateSeat.restSeat
-                }
-            }
-            const result = await classesCollection.updateOne(filter, updateDoc, options)
-            return res.send(result)
-        })
+        //             seat: updateSeat.restSeat
+        //         }
+        //     }
+        //     const result = await classesCollection.updateOne(filter, updateDoc, options)
+        //     return res.send(result)
+        // })
         
         app.patch('/classes/admin/:id', async (req, res) => {
             const id = req.params.id;
