@@ -112,20 +112,20 @@ async function run() {
             return res.send({token})
         })
 
-    //   const verifyAdmin = async (req, res, next) => {
-    //   const email = req.decoded.email;
-    //   const query = { email: email }
-    //   const user = await userCollection.findOne(query);
-    //   if (user?.role !== 'admin') {
-    //     return res.status(403).send({ error: true, message: 'forbidden message' });
-    //   }
-    //   next();
-    // }
+      const verifyAdmin = async (req, res, next) => {
+      const email = req.decoded.email;
+      const query = { email: email }
+      const user = await userCollection.findOne(query);
+      if (user?.role !== 'admin') {
+        return res.status(403).send({ error: true, message: 'forbidden message' });
+      }
+      next();
+    }
 
-        app.get('/classes', async (req, res) => {
-            const result = await classesCollection.find().toArray();
-             return res.send(result);
-        })
+        // app.get('/classes', async (req, res) => {
+        //     const result = await classesCollection.find().toArray();
+        //      return res.send(result);
+        // })
 
         app.post("/classes", async (req, res) => {
             const newclass = req.body;
