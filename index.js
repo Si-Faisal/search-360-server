@@ -78,7 +78,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
 // 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 
-// const uri = `mongodb+srv://${process.env.SEARCH_USER}:${process.env.SEARCH_PASS}@cluster0.kaq6cez.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.SEARCH_USER}:${process.env.SEARCH_PASS}@cluster0.kaq6cez.mongodb.net/?retryWrites=true&w=majority`;
 
 
 
@@ -106,11 +106,11 @@ async function run() {
         
 
 
-        app.post("/jwt",  (req, res) => {
-            const user = req.body;
-            const token = jwt.sign(user, process.env.JWT_TOKEN, { expiresIn: '5hr' });
-            return res.send({token})
-        })
+        // app.post("/jwt",  (req, res) => {
+        //     const user = req.body;
+        //     const token = jwt.sign(user, process.env.JWT_TOKEN, { expiresIn: '5hr' });
+        //     return res.send({token})
+        // })
 
       const verifyAdmin = async (req, res, next) => {
       const email = req.decoded.email;
