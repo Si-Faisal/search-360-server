@@ -47,32 +47,32 @@ const verifyJWT = (req, res, next) => {
     })
 }
 
-// const img_hosting_url = `https://api.imgbb.com/1/upload?key=${process.env.img_hosting_token}`
+const img_hosting_url = `https://api.imgbb.com/1/upload?key=${process.env.img_hosting_token}`
 
 
-app.post('/upload', upload.single('image'), (req, res) => {
-    const imageBuffer = req.file.buffer;
-    const fileName = req.file.originalname;
-    const contentType = req.file.mimetype;
+// app.post('/upload', upload.single('image'), (req, res) => {
+//     const imageBuffer = req.file.buffer;
+//     const fileName = req.file.originalname;
+//     const contentType = req.file.mimetype;
 
-    console.log(req.body);
-    console.log(img_hosting_url);
+//     console.log(req.body);
+//     console.log(img_hosting_url);
 
-    fetch(img_hosting_url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `image=${encodeURIComponent(imageBuffer.toString('base64'))}&name=${encodeURIComponent(fileName)}&content_type=${encodeURIComponent(contentType)}`,
-    })
-        .then(response => response.json())
-        .then(imgResponse => {
-            res.json(imgResponse);
-        })
-        .catch(error => {
-            res.status(500).json({ error: 'Failed to upload image' });
-        });
-});
+//     fetch(img_hosting_url, {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/x-www-form-urlencoded',
+//         },
+//         body: `image=${encodeURIComponent(imageBuffer.toString('base64'))}&name=${encodeURIComponent(fileName)}&content_type=${encodeURIComponent(contentType)}`,
+//     })
+//         .then(response => response.json())
+//         .then(imgResponse => {
+//             res.json(imgResponse);
+//         })
+//         .catch(error => {
+//             res.status(500).json({ error: 'Failed to upload image' });
+//         });
+// });
 
 // 
 // 
