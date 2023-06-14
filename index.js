@@ -30,22 +30,22 @@ const upload = multer();
 
 
 
-const verifyJWT = (req, res, next) => {
-    const authorization = req.headers.authorization;
-    if (!authorization) {
-        return res.status(401).send({ error: true, message: 'unauthorized access' });
-    }
-    // bearer token
-    const token = authorization.split(' ')[1];
+// const verifyJWT = (req, res, next) => {
+//     const authorization = req.headers.authorization;
+//     if (!authorization) {
+//         return res.status(401).send({ error: true, message: 'unauthorized access' });
+//     }
+//     // bearer token
+//     const token = authorization.split(' ')[1];
 
-    jwt.verify(token, process.env.JWT_TOKEN, (err, decoded) => {
-        if (err) {
-            return res.status(403).send({ error: true, message: 'unauthorized access' })
-        }
-        req.decoded = decoded;
-        next();
-    })
-}
+//     jwt.verify(token, process.env.JWT_TOKEN, (err, decoded) => {
+//         if (err) {
+//             return res.status(403).send({ error: true, message: 'unauthorized access' })
+//         }
+//         req.decoded = decoded;
+//         next();
+//     })
+// }
 
 const img_hosting_url = `https://api.imgbb.com/1/upload?key=${process.env.img_hosting_token}`
 
