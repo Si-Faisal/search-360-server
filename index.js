@@ -122,16 +122,16 @@ async function run() {
       next();
     }
 
-        // app.get('/classes', async (req, res) => {
-        //     const result = await classesCollection.find().toArray();
-        //      return res.send(result);
-        // })
-
-        app.post("/classes", async (req, res) => {
-            const newclass = req.body;
-            const result = await classesCollection.insertOne(newclass);
-            return res.send(result);
+        app.get('/classes', async (req, res) => {
+            const result = await classesCollection.find().toArray();
+             return res.send(result);
         })
+
+        // app.post("/classes", async (req, res) => {
+        //     const newclass = req.body;
+        //     const result = await classesCollection.insertOne(newclass);
+        //     return res.send(result);
+        // })
 
         //after make payment...seat are reduce from available seat...
 
